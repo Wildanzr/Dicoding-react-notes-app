@@ -9,7 +9,7 @@ const NoteForm = ({ title, notes, titleHandler, notesHandler, submitHandler }) =
           Create Note
         </h2>
         <p className="text-sm text-right duration-300 dark:text-white">
-          Characters available: 50
+          Characters available: {50 - title.length}
         </p>
       </div>
 

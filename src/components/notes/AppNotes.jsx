@@ -34,12 +34,16 @@ class AppNotes extends React.Component {
   }
 
   onTitleChangeEventHandler = (e) => {
-    this.setState({
-      noteForm: {
-        ...this.state.noteForm,
-        title: e.target.value
-      }
-    })
+    const titleLength = e.target.value.length
+
+    if (titleLength <= 50) {
+      this.setState({
+        noteForm: {
+          ...this.state.noteForm,
+          title: e.target.value
+        }
+      })
+    }
   }
 
   onNoteChangeEventHandler = (e) => {
