@@ -3,15 +3,11 @@ import React from 'react'
 
 import moment from 'moment'
 
+import NoteDetails from './NoteDetails'
+
 const Note = ({ id, title, body, createdAt, archived, buttonFunc }) => {
   // Minify notes body
-  body =
-    body.length > 150
-      ? (body = `${body.substring(0, 125)} ........... ${body.substring(
-          body.length - 20,
-          body.length
-        )}`)
-      : body
+  const simple = body.length > 150 ? (`${body.substring(0, 125)} ........... ${body.substring(body.length - 20, body.length)}`) : body
 
   // Destructure buttonFunc
   const { moveNote, deleteNote } = buttonFunc
@@ -24,7 +20,7 @@ const Note = ({ id, title, body, createdAt, archived, buttonFunc }) => {
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
         <p className="text-xs pb-0 mb-0">{moment(createdAt).format('llll')}</p>
-        <p className="text-sm">{body}</p>
+        <p className="text-sm">{simple}</p>
       </div>
 
       <div className="card-actions my-3 mx-3">
@@ -43,7 +39,7 @@ const Note = ({ id, title, body, createdAt, archived, buttonFunc }) => {
           </button>
         </div>
         <div className="flex w-5/12 justify-end">
-          <button className="btn btn-info btn-xs">Detail</button>
+          <NoteDetails title={title} body={body} />
         </div>
       </div>
     </div>
