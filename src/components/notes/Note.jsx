@@ -14,7 +14,7 @@ const Note = ({ id, title, body, createdAt, archived, buttonFunc }) => {
 
   return (
     <div
-      className="card card-compact w-96 h-52 bg-base-200 mx-3 my-3 shadow-md dark:bg-slate-600 dark:text-white"
+      className="card card-compact w-96 h-52 bg-base-200 mx-3 my-3 shadow-md duration-300 dark:bg-slate-600 dark:text-white"
       key={id}
     >
       <div className="card-body">

@@ -3,6 +3,7 @@ import React from 'react'
 import { getInitialData, addNote } from '../../utils'
 
 import Header from '../base/Header'
+import Footer from '../base/Footer'
 import NoteForm from './NoteForm'
 import NoteLists from './NoteLists'
 
@@ -118,7 +119,7 @@ class AppNotes extends React.Component {
     }
 
     return (
-      <div className="flex container mx-auto w-full flex-col duration-300 dark:bg-slate-800">
+      <div className="flex container h-screen mx-auto my-auto flex-col duration-300 dark:bg-slate-800">
         <Header
           theme={this.state.theme}
           onDarkSwitcherClick={this.onDarkSwitcherClick}
@@ -152,6 +153,8 @@ class AppNotes extends React.Component {
           empty={'No Archived Notes :('}
           archived={true}
         />
+
+        <Footer />
       </div>
     )
   }

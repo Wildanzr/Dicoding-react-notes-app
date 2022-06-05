@@ -35,7 +35,7 @@ const NoteForm = ({ title, notes, titleHandler, notesHandler, submitHandler }) =
           required
         />
 
-        <button type='submit' className='btn btn-info btn-outline btn-sm text-lg uppercase mb-2 duration-300 dark:text-white'>Create</button>
+        <button type='submit' className='btn btn-info btn-outline btn-sm text-lg uppercase mb-2 duration-300 dark:btn-accent dark:text-white'>Create</button>
       </form>
     </div>
   )

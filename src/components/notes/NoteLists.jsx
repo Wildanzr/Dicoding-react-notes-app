@@ -7,7 +7,9 @@ const NoteLists = ({ notes, buttonFunc, title, empty, archived }) => {
   const filteredNotes = notes.filter((note) => note.archived === archived)
 
   return (
-    <>
+    <div
+      className='duration-300 py-10 dark:bg-slate-800'
+    >
       <h3 className="text-center text-xl font-semibold my-5 duration dark:text-white">
         {title}
       </h3>
@@ -29,7 +31,7 @@ const NoteLists = ({ notes, buttonFunc, title, empty, archived }) => {
           />
         ))}
       </div>
-    </>
+    </div>
   )
 }
 
