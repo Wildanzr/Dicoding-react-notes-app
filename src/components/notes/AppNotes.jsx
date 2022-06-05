@@ -79,7 +79,7 @@ class AppNotes extends React.Component {
     }
 
     return (
-      <div className="flex container mx-auto flex-col duration-300 dark:bg-slate-800">
+      <div className="flex container mx-auto w-full flex-col duration-300 dark:bg-slate-800">
         <Header
           theme={this.state.theme}
           onDarkSwitcherClick={this.onDarkSwitcherClick}

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 
-import DarkSwitcher from '../buttons/DarkSwitcher'
+import DarkSwitcher from './DarkSwitcher'
 
 const Header = ({ theme, onDarkSwitcherClick }) => {
   return (
