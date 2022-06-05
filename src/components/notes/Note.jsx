@@ -3,9 +3,18 @@ import React from 'react'
 
 import moment from 'moment'
 
-const Note = ({ id, title, body, createdAt, archived, moveNote }) => {
+const Note = ({ id, title, body, createdAt, archived, buttonFunc }) => {
   // Minify notes body
-  body = body.length > 150 ? body = `${body.substring(0, 125)} ........... ${body.substring(body.length - 20, body.length)}` : body
+  body =
+    body.length > 150
+      ? (body = `${body.substring(0, 125)} ........... ${body.substring(
+          body.length - 20,
+          body.length
+        )}`)
+      : body
+
+  // Destructure buttonFunc
+  const { moveNote, deleteNote } = buttonFunc
 
   return (
     <div
@@ -14,15 +23,18 @@ const Note = ({ id, title, body, createdAt, archived, moveNote }) => {
     >
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
-        <p className="text-xs pb-0 mb-0">
-          {moment(createdAt).format('llll')}
-        </p>
+        <p className="text-xs pb-0 mb-0">{moment(createdAt).format('llll')}</p>
         <p className="text-sm">{body}</p>
       </div>
 
       <div className="card-actions my-3 mx-3">
         <div className="flex w-6/12 justify-start">
-          <button className="btn btn-error btn-xs mx-1">Delete</button>
+          <button
+            className="btn btn-error btn-xs mx-1"
+            onClick={() => deleteNote(id)}
+          >
+            Delete
+          </button>
           <button
             className="btn btn-warning btn-xs mx-1"
             onClick={() => moveNote(id)}

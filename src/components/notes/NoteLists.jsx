@@ -3,7 +3,7 @@ import React from 'react'
 
 import Note from './Note'
 
-const NoteLists = ({ notes, moveNote, title, empty, archived }) => {
+const NoteLists = ({ notes, buttonFunc, title, empty, archived }) => {
   const filteredNotes = notes.filter(note => note.archived === archived)
   return (
     <>
@@ -12,7 +12,7 @@ const NoteLists = ({ notes, moveNote, title, empty, archived }) => {
       <div className="carousel rounded-box mb-5 mx-5">
         <div className="carousel-item mx-3 my-3">
           {filteredNotes.map((note) => (
-            <Note key={note.id} moveNote={moveNote} {...note} />
+            <Note key={note.id} buttonFunc={buttonFunc} {...note} />
           ))}
         </div>
       </div>

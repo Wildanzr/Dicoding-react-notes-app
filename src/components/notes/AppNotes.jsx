@@ -28,6 +28,13 @@ class AppNotes extends React.Component {
     this.onNoteChangeEventHandler = this.onNoteChangeEventHandler.bind(this)
     this.onFormSubmitEventHandler = this.onFormSubmitEventHandler.bind(this)
     this.moveNote = this.moveNote.bind(this)
+    this.deleteNote = this.deleteNote.bind(this)
+
+    // Wrap button functions
+    this.buttonFunc = {
+      moveNote: this.moveNote,
+      deleteNote: this.deleteNote
+    }
   }
 
   onDarkSwitcherClick = () => {
@@ -82,6 +89,12 @@ class AppNotes extends React.Component {
     this.setState({ notes })
   }
 
+  deleteNote = (id) => {
+    const notes = this.state.notes.filter(note => note.id !== id)
+
+    this.setState({ notes })
+  }
+
   render () {
     if (this.state.theme === 'dark') {
       document.documentElement.classList.add('dark')
@@ -102,8 +115,8 @@ class AppNotes extends React.Component {
           submitHandler={this.onFormSubmitEventHandler}
         />
 
-        <NoteLists notes={this.state.notes} moveNote={this.moveNote} title={'Active Notes'} empty={'No Active Notes :('} archived={false}/>
-        <NoteLists notes={this.state.notes} moveNote={this.moveNote} title={'Archived Notes'} empty={'No Archived Notes :('} archived={true}/>
+        <NoteLists notes={this.state.notes} buttonFunc={this.buttonFunc} title={'Active Notes'} empty={'No Active Notes :('} archived={false}/>
+        <NoteLists notes={this.state.notes} buttonFunc={this.buttonFunc} title={'Archived Notes'} empty={'No Archived Notes :('} archived={true}/>
       </div>
     )
   }
