@@ -1,6 +1,9 @@
 import React from 'react'
 
+import { getInitialData, addNote } from '../../utils'
+
 import Header from '../base/Header'
+import NoteForm from './NoteForm'
 
 class AppNotes extends React.Component {
   constructor (props) {
@@ -8,17 +11,59 @@ class AppNotes extends React.Component {
 
     // Global state
     this.state = {
-      notes: [],
+      notes: getInitialData(),
+      tempNotes: [],
+      noteForm: {
+        title: '',
+        notes: ''
+      },
       theme: 'light',
       query: ''
     }
 
     // Bind methods
     this.onDarkSwitcherClick = this.onDarkSwitcherClick.bind(this)
+    this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this)
+    this.onNoteChangeEventHandler = this.onNoteChangeEventHandler.bind(this)
+    this.onFormSubmitEventHandler = this.onFormSubmitEventHandler.bind(this)
   }
 
   onDarkSwitcherClick = () => {
     this.setState({ theme: this.state.theme === 'light' ? 'dark' : 'light' })
+  }
+
+  onTitleChangeEventHandler = (e) => {
+    this.setState({
+      noteForm: {
+        ...this.state.noteForm,
+        title: e.target.value
+      }
+    })
+  }
+
+  onNoteChangeEventHandler = (e) => {
+    this.setState({
+      noteForm: {
+        ...this.state.noteForm,
+        notes: e.target.value
+      }
+    })
+  }
+
+  onFormSubmitEventHandler = (e) => {
+    e.preventDefault()
+
+    this.setState({
+      notes: [
+        ...addNote(this.state.notes, this.state.noteForm)
+      ],
+      noteForm: {
+        title: '',
+        notes: ''
+      }
+    })
+
+    console.log(this.state.notes)
   }
 
   render () {
@@ -29,10 +74,16 @@ class AppNotes extends React.Component {
     }
 
     return (
-      <div className="flex container bg-slate-800 mx-auto flex-col">
+      <div className="flex container mx-auto flex-col duration-300 dark:bg-slate-800">
         <Header
           theme={this.state.theme}
           onDarkSwitcherClick={this.onDarkSwitcherClick}
+        />
+
+        <NoteForm
+          title={this.state.noteForm.title} titleHandler={this.onTitleChangeEventHandler}
+          notes={this.state.noteForm.notes} notesHandler={this.onNoteChangeEventHandler}
+          submitHandler={this.onFormSubmitEventHandler}
         />
       </div>
     )

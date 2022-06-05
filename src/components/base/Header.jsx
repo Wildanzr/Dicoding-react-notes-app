@@ -5,9 +5,9 @@ import DarkSwitcher from '../buttons/DarkSwitcher'
 
 const Header = ({ theme, onDarkSwitcherClick }) => {
   return (
-    <div className="navbar navbar-center bg-base-100 dark:bg-slate-800">
+    <div className="navbar navbar-center bg-base-100 duration-300 dark:bg-slate-800">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl dark:text-white">
+        <a className="btn btn-ghost normal-case text-xl duration-300 dark:text-white">
           Notes App
         </a>
       </div>
@@ -21,7 +21,7 @@ const Header = ({ theme, onDarkSwitcherClick }) => {
           <input
             type="text"
             placeholder="Search Notes"
-            className="input input-info dark:bg-slate-600 dark:text-white dark:input-accent"
+            className="input input-info duration-300 dark:bg-slate-600 dark:text-white dark:input-accent"
           />
         </div>
       </div>
