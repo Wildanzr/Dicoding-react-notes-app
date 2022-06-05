@@ -10,7 +10,7 @@ const NoteDetails = ({ title, body }) => {
 
       <input type="checkbox" id="note-details" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
+        <div className="modal-box duration-300 dark:bg-slate-600 dark:text-white">
           <h3 className="font-bold text-lg">
             {title}
           </h3>
@@ -18,7 +18,7 @@ const NoteDetails = ({ title, body }) => {
             {body}
           </p>
           <div className="modal-action">
-            <label htmlFor="note-details" className="btn">
+            <label htmlFor="note-details" className="btn btn-ghost">
               See!
             </label>
           </div>

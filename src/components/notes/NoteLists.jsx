@@ -19,14 +19,14 @@ const NoteLists = ({ notes, buttonFunc, title, empty, archived }) => {
           )
         : null}
 
-      <div className="grid grid-cols-3 grid-flow-row gap-1 items-center">
+      <div className="grid grid-cols-3 grid-flow-row gap-1 mx-auto items-center">
         {filteredNotes.map((note, idx) => (
-          <div className="flex" key={note.id}>
-            <Note key={note.id} buttonFunc={buttonFunc} {...note} />
-
-            {/* Break if idx % 3 */}
-            {idx % 3 === 0 ? <br /> : null}
-          </div>
+          <Note
+            key={note.id}
+            buttonFunc={buttonFunc}
+            {...note}
+            className="flex items-center justify-center"
+          />
         ))}
       </div>
     </>
