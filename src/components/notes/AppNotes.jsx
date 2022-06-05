@@ -26,6 +26,7 @@ class AppNotes extends React.Component {
     this.onDarkSwitcherClick = this.onDarkSwitcherClick.bind(this)
     this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this)
     this.onNoteChangeEventHandler = this.onNoteChangeEventHandler.bind(this)
+    this.onQueryChangeEventHandler = this.onQueryChangeEventHandler.bind(this)
     this.onFormSubmitEventHandler = this.onFormSubmitEventHandler.bind(this)
     this.moveNote = this.moveNote.bind(this)
     this.deleteNote = this.deleteNote.bind(this)
@@ -63,13 +64,27 @@ class AppNotes extends React.Component {
     })
   }
 
+  onQueryChangeEventHandler = (e) => {
+    this.setState({ query: e.target.value })
+
+    if (e.target.value !== '') {
+      this.setState({
+        tempNotes: this.state.notes.filter((note) => {
+          return note.title
+            .toLowerCase()
+            .includes(e.target.value.toLowerCase())
+        })
+      })
+    } else {
+      this.setState({ tempNotes: [] })
+    }
+  }
+
   onFormSubmitEventHandler = (e) => {
     e.preventDefault()
 
     this.setState({
-      notes: [
-        ...addNote(this.state.notes, this.state.noteForm)
-      ],
+      notes: [...addNote(this.state.notes, this.state.noteForm)],
       noteForm: {
         title: '',
         notes: ''
@@ -78,7 +93,7 @@ class AppNotes extends React.Component {
   }
 
   moveNote = (id) => {
-    const notes = this.state.notes.map(note => {
+    const notes = this.state.notes.map((note) => {
       if (note.id === id) {
         note.archived = !note.archived
       }
@@ -90,7 +105,7 @@ class AppNotes extends React.Component {
   }
 
   deleteNote = (id) => {
-    const notes = this.state.notes.filter(note => note.id !== id)
+    const notes = this.state.notes.filter((note) => note.id !== id)
 
     this.setState({ notes })
   }
@@ -107,16 +122,36 @@ class AppNotes extends React.Component {
         <Header
           theme={this.state.theme}
           onDarkSwitcherClick={this.onDarkSwitcherClick}
+          query={this.state.query}
+          onQueryChangeEventHandler={this.onQueryChangeEventHandler}
         />
 
         <NoteForm
-          title={this.state.noteForm.title} titleHandler={this.onTitleChangeEventHandler}
-          notes={this.state.noteForm.notes} notesHandler={this.onNoteChangeEventHandler}
+          title={this.state.noteForm.title}
+          titleHandler={this.onTitleChangeEventHandler}
+          notes={this.state.noteForm.notes}
+          notesHandler={this.onNoteChangeEventHandler}
           submitHandler={this.onFormSubmitEventHandler}
         />
 
-        <NoteLists notes={this.state.notes} buttonFunc={this.buttonFunc} title={'Active Notes'} empty={'No Active Notes :('} archived={false}/>
-        <NoteLists notes={this.state.notes} buttonFunc={this.buttonFunc} title={'Archived Notes'} empty={'No Archived Notes :('} archived={true}/>
+        <NoteLists
+          notes={
+            this.state.query === '' ? this.state.notes : this.state.tempNotes
+          }
+          buttonFunc={this.buttonFunc}
+          title={'Active Notes'}
+          empty={'No Active Notes :('}
+          archived={false}
+        />
+        <NoteLists
+          notes={
+            this.state.query === '' ? this.state.notes : this.state.tempNotes
+          }
+          buttonFunc={this.buttonFunc}
+          title={'Archived Notes'}
+          empty={'No Archived Notes :('}
+          archived={true}
+        />
       </div>
     )
   }

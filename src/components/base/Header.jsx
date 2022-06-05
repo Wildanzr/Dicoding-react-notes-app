@@ -3,7 +3,7 @@ import React from 'react'
 
 import DarkSwitcher from './DarkSwitcher'
 
-const Header = ({ theme, onDarkSwitcherClick }) => {
+const Header = ({ theme, onDarkSwitcherClick, query, onQueryChangeEventHandler }) => {
   return (
     <div className="navbar navbar-center bg-base-100 duration-300 dark:bg-slate-800">
       <div className="flex-1">
@@ -21,6 +21,8 @@ const Header = ({ theme, onDarkSwitcherClick }) => {
           <input
             type="text"
             placeholder="Search Notes"
+            value={query}
+            onChange={onQueryChangeEventHandler}
             className="input input-info duration-300 dark:bg-slate-600 dark:text-white dark:input-accent"
           />
         </div>
