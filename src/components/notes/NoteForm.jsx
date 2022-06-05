@@ -4,17 +4,17 @@ import React from 'react'
 const NoteForm = ({ title, notes, titleHandler, notesHandler, submitHandler }) => {
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="flex w-6/12 my-5 flex-col">
+      <div className="flex w-10/12 my-5 flex-col md:w-6/12">
         <h2 className="text-xl text-center duration-300 dark:text-white">
           Create Note
         </h2>
-        <p className="text-sm text-right duration-300 dark:text-white">
+        <p className="text-sm text-center md:text-right duration-300 dark:text-white">
           Characters available: {50 - title.length}
         </p>
       </div>
 
       <form
-        className="flex flex-col w-6/12"
+        className="flex flex-col w-10/12 md:w-6/12"
         onSubmit={submitHandler}
         >
         <input

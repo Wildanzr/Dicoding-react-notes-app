@@ -19,7 +19,7 @@ const NoteLists = ({ notes, buttonFunc, title, empty, archived }) => {
           )
         : null}
 
-      <div className="grid grid-cols-3 grid-flow-row gap-1 mx-auto items-center">
+      <div className="grid grid-cols-1 grid-flow-row gap-1 mx-auto items-center md:grid-cols-2 xl:grid-cols-3">
         {filteredNotes.map((note, idx) => (
           <Note
             key={note.id}
