@@ -27,6 +27,7 @@ class AppNotes extends React.Component {
     this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this)
     this.onNoteChangeEventHandler = this.onNoteChangeEventHandler.bind(this)
     this.onFormSubmitEventHandler = this.onFormSubmitEventHandler.bind(this)
+    this.moveNote = this.moveNote.bind(this)
   }
 
   onDarkSwitcherClick = () => {
@@ -67,8 +68,18 @@ class AppNotes extends React.Component {
         notes: ''
       }
     })
+  }
 
-    console.log(this.state.notes)
+  moveNote = (id) => {
+    const notes = this.state.notes.map(note => {
+      if (note.id === id) {
+        note.archived = !note.archived
+      }
+
+      return note
+    })
+
+    this.setState({ notes })
   }
 
   render () {
@@ -91,8 +102,8 @@ class AppNotes extends React.Component {
           submitHandler={this.onFormSubmitEventHandler}
         />
 
-        <NoteLists notes={this.state.notes} title={'Active Notes'} empty={'No Active Notes :('} archived={false}/>
-        <NoteLists notes={this.state.notes} title={'Archived Notes'} empty={'No Archived Notes :('} archived={true}/>
+        <NoteLists notes={this.state.notes} moveNote={this.moveNote} title={'Active Notes'} empty={'No Active Notes :('} archived={false}/>
+        <NoteLists notes={this.state.notes} moveNote={this.moveNote} title={'Archived Notes'} empty={'No Archived Notes :('} archived={true}/>
       </div>
     )
   }
