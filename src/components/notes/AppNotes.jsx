@@ -4,6 +4,8 @@ import { getInitialData, addNote } from '../../utils'
 
 import Header from '../base/Header'
 import NoteForm from './NoteForm'
+import ActiveNotes from './ActiveNotes'
+import ArchiveNotes from './ArchiveNotes'
 
 class AppNotes extends React.Component {
   constructor (props) {
@@ -85,6 +87,9 @@ class AppNotes extends React.Component {
           notes={this.state.noteForm.notes} notesHandler={this.onNoteChangeEventHandler}
           submitHandler={this.onFormSubmitEventHandler}
         />
+
+        <ActiveNotes notes={this.state.notes}/>
+        <ArchiveNotes notes={this.state.notes}/>
       </div>
     )
   }
